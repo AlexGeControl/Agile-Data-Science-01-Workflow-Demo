@@ -28,5 +28,9 @@
         {% endfor %}
       </tbody>
     </table>
+    {% import "nav.jnj" as nav %}
+    {% if nav_offsets and nav_path -%}
+      {{ nav.display_nav(nav_offsets, nav_path, flight_count, query)|safe }}
+    {% endif -%}
   </div>
 {% endblock %}
