@@ -25,8 +25,10 @@ def get_navigation_offsets(start, end, increment):
 @app.route("/flights/<origin>/<dest>/<flight_date>")
 def list_flights(origin, dest, flight_date):
     # Parse pagination params:
-    start = int(request.args.get("start")) or 0
-    end = int(request.args.get("end")) or RECORDS_PER_PAGE
+    start = request.args.get("start") or 0
+    start = int(start)
+    end = request.args.get("end") or RECORDS_PER_PAGE
+    end = int(end)
     num_records = end - start
 
     # Get matching flights:
