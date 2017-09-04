@@ -9,15 +9,19 @@ client = MongoClient()
 RECORDS_PER_PAGE = 20
 
 def get_navigation_offsets(start, end, increment):
-    offsets = {}
-    offsets['Previous'] = {
-        'start': max(0, start - increment),
-        'end': max(0, end - increment)
-    }
-    offsets['Next'] = {
-        'start': start + increment,
-        'end':   end + increment
-    }
+    offsets = []
+    offsets.append(
+        ('Previous', {
+            'start': max(0, start - increment),
+            'end': max(0, end - increment)
+        })
+    )
+    offsets.append(
+        ('Next', {
+            'start': start + increment,
+            'end':   end + increment
+        })
+    )
 
     return offsets
 

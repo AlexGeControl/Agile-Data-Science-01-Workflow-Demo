@@ -1,19 +1,16 @@
 <!-- Display two navigation links for previous/next page in the flight list -->;
 {% macro display_nav(offsets, path, count, query) -%}
   <div style="text-align: center;">
-    {% for key, values in offsets.items() -%}
-      {%- (
-        if values['start'] >= 0 and
-        values['end'] > 0 and
-        count > values['end'] ) -%}
-        <a
-          style="margin-left: 20px; margin-right: 20px;"
+    {% for key, values in offsets -%}
+      {%- if values['start'] >= 0 and values['end'] > 0 and
+          values['start'] < count -%}
+        <a style="margin-left: 20px; margin-right: 20px;"
           href="{{path}}?start={{values['start']}}&amp;end={{values['end']}}
           {%- if query -%}?search={{query}}{%- endif -%}">
-          {{ key }}
+            {{ key }}
         </a>
       {% else -%}
-        {{key}}
+        {{ key }}
       {% endif %}
     {% endfor -%}
   </div>
