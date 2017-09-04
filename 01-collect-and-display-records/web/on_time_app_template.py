@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from bson import json_util
 
 from pyelasticsearch import ElasticSearch
+import json
 
 from flask import Flask, render_template, request
 
