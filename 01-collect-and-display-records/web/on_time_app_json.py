@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 client = MongoClient()
 
-# Controller: Fetch an email and display it
+# Controller: Fetch one flight record and display
 @app.route("/on_time_performance")
 def on_time_performance():
     # Parse incoming request:
