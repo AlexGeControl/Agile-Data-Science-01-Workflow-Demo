@@ -46,8 +46,8 @@
       </tbody>
     </table>
   </div>
-  {% import "macros.jnj" as common %}
+  {% import "nav.jnj" as nav %}
   {% if nav_offsets and nav_path -%}
-    {{ common.display_nav(nav_offsets, nav_path, flight_count)|safe }}
+    {{ nav.display_nav(nav_offsets, nav_path, flight_count)|safe }}
   {% endif -%}
 {% endblock %}

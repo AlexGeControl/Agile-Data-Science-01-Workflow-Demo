@@ -46,7 +46,7 @@ def get_navigation_offsets(start, end, increment):
 def strip_place(url):
     try:
         path = re.match('(.+)&start=.+&end=.+', url).group(1)
-    except AttributeError, e:
+    except AttributeError as e:
         return url
     return path
 
@@ -139,13 +139,6 @@ def search_flights():
                 'must': []
             }
         },
-        'sort': [
-            {'FlightDate': {'order': 'asc', 'ignore_unmapped' : True} },
-            {'DepTime': {'order': 'asc', 'ignore_unmapped' : True} },
-            {'Carrier': {'order': 'asc', 'ignore_unmapped' : True} },
-            {'FlightNum': {'order': 'asc', 'ignore_unmapped' : True} },
-            '_score'
-        ],
         'from': start,
         'size': RECORDS_PER_PAGE
     }
@@ -169,7 +162,7 @@ def search_flights():
     print(carrier, flight_date, origin, dest, tail_number, flight_number)
     print(json.dumps(query))
     results = elastic.search(query)
-    flights, flight_count = process_search(results)
+    flights, flight_count = parse_es_search_results(results)
 
     # Persist search parameters in the form template
     return render_template(
