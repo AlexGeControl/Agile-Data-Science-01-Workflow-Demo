@@ -19,7 +19,7 @@ def on_time_performance():
         {
             'Carrier': carrier,
             'FlightDate': flight_date,
-            'FlightNum': int(flight_num)
+            'FlightNum': flight_num
         }
     )
 
